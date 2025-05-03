@@ -12,6 +12,9 @@ class Maze:
 
 
 class MazeGame:
+    """
+    Creates maze by hard-coding components
+    """
 
     @staticmethod
     def create_maze() -> Maze:
