@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from enum import Enum
 from typing import Optional
+from spells import Spell
 
 
 class Direction(Enum):
@@ -43,6 +44,16 @@ class Room(MapSite):
         return self._sides[direction]
 
 
+class EnchantedRoom(Room):
+
+    def __init__(self, room_no: int, cast_spell: Spell):
+        super().__init__(room_no)
+        self._cast_spell = cast_spell
+
+    def enter(self):
+        print(f"Entered room number {self._room_number} enchanted with spell: {self._cast_spell.spell_name}")
+
+
 class Wall(MapSite):
 
     def enter(self):
@@ -71,3 +82,14 @@ class Door(MapSite):
             return self._room1
         else:
             print("Room not connected to door")
+
+
+class DoorNeedingSpell(Door):
+
+    def __init__(self, room1: Room, room2: Room):
+        super().__init__(room1, room2)
+        self._is_open = False
+
+    def cast_spell(self, casted_spell: Spell):
+        if casted_spell.spell_name == "Abracadabra":
+            self._is_open = True

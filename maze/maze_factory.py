@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from maze_game import Maze
-from map_site import Room, Wall, Door, Direction
+from map_site import Room, EnchantedRoom, Wall, Door, DoorNeedingSpell, Direction
+from spells import AbracadabraSpell
 
 
 class AbstractMazeFactory(ABC):
@@ -35,6 +36,15 @@ class BaseMazeFactory(AbstractMazeFactory):
 
     def make_door(self, r1: Room, r2: Room):
         return Door(room1=r1, room2=r2)
+
+
+class EnchantedMazeFactory(BaseMazeFactory):
+
+    def make_room(self, n) -> Room:
+        return EnchantedRoom(room_no=n, cast_spell=AbracadabraSpell())
+
+    def make_door(self, r1: Room, r2: Room):
+        return DoorNeedingSpell(room1=r1, room2=r2)
 
 
 class MazeGame:
