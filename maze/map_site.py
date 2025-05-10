@@ -34,6 +34,10 @@ class Room(MapSite):
             Direction.WEST: None
         }
 
+    @property
+    def room_number(self) -> int:
+        return self._room_number
+
     def enter(self):
         print(f"Entered room number {self._room_number}")
 
