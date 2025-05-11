@@ -38,6 +38,10 @@ class Room(MapSite):
     def room_number(self) -> int:
         return self._room_number
 
+    @room_number.setter
+    def room_number(self, room_no: int):
+        self._room_number = room_no
+
     def enter(self):
         print(f"Entered room number {self._room_number}")
 
@@ -70,6 +74,13 @@ class Door(MapSite):
         self._room1: Room = room1
         self._room2: Room = room2
         self._is_open: Optional[bool] = None
+
+
+    def set_room1(self, room: Room):
+        self._room1 = room
+
+    def set_room2(self, room: Room):
+        self._room2 = room
 
     def enter(self):
         if self._is_open is None:
