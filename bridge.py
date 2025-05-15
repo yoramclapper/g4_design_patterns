@@ -1,63 +1,79 @@
-# example of https://www.geeksforgeeks.org/bridge-design-pattern/ because book example is too convuluted
+# implemented own interpretation of the Bridge pattern because the book example is too convuluted
 
 from abc import ABC, abstractmethod
 
+class ColorPainter(ABC):
 
-class Workshop(ABC):
+    @property
+    @abstractmethod
+    def color(self):
+        pass
 
     @abstractmethod
-    def work(self):
+    def paint(self):
         pass
 
 
-class Produce(Workshop):
+class RedPainter(ColorPainter):
+    def __init__(self):
+        self._color = "red"
 
-    def work(self):
-        return "Produced"
+    @property
+    def color(self):
+        return self._color
+
+    def paint(self):
+        print(f"Painting in {self.color} color")
 
 
-class Assemble(Workshop):
+class BluePainter(ColorPainter):
+    def __init__(self):
+        self._color = "blue"
 
-    def work(self):
-        return "Assembled"
+    @property
+    def color(self):
+        return self._color
 
-class Vehicle(ABC):
+    def paint(self):
+        print(f"Painting in {self.color} color")
 
-    def __init__(self, workshop_1: Workshop, workshop_2: Workshop):
-        self._workshop_1 = workshop_1
-        self._workshop_2 = workshop_2
+
+class Surface(ABC):
+
+    def __init__(self, painter: ColorPainter):
+        self._painter = painter
 
     @abstractmethod
-    def manufacture(self):
+    def draw(self):
         pass
 
 
-class Car(Vehicle):
-    def __init__(self, workshop_1: Workshop, workshop_2: Workshop):
-        super().__init__(workshop_1, workshop_2)
+class Door(Surface):
 
-    def manufacture(self):
-        print(f"Manufacture car")
-        print(self._workshop_1.work())
-        print(self._workshop_2.work())
-        print("\n")
+    def __init__(self, painter: ColorPainter):
+        super().__init__(painter)
+
+    def draw(self):
+        print("Drawing a door")
+        self._painter.paint()
 
 
-class Bike(Vehicle):
-    def __init__(self, workshop_1: Workshop, workshop_2: Workshop):
-        super().__init__(workshop_1, workshop_2)
+class Wall(Surface):
 
-    def manufacture(self):
-        print(f"Manufacture bike")
-        print(self._workshop_1.work())
-        print(self._workshop_2.work())
-        print("\n")
+    def __init__(self, painter: ColorPainter):
+        super().__init__(painter)
+
+    def draw(self):
+        print("Drawing a wall")
+        self._painter.paint()
+
 
 if __name__ == "__main__":
-    car = Car(workshop_1=Produce(), workshop_2=Assemble())
-    car.manufacture()
+    red_painter = RedPainter()
+    blue_painter = BluePainter()
 
-    bike = Bike(workshop_1=Produce(), workshop_2=Assemble())
-    bike.manufacture()
+    door = Door(red_painter)
+    wall = Wall(blue_painter)
 
-
+    door.draw()
+    wall.draw()
