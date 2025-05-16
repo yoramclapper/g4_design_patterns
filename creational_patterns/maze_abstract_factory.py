@@ -49,7 +49,7 @@ class EnchantedMazeFactory(BaseMazeFactory):
 
 class MazeGame:
     """
-    Creates maze with abstract factory method
+    Creates creational_patterns with abstract factory method
     """
 
     def __init__(self, factory: AbstractMazeFactory):

@@ -13,7 +13,7 @@ class Maze:
 
 class MazeGame:
     """
-    Creates maze by hard-coding components
+    Creates creational_patterns by hard-coding components
     """
 
     @staticmethod

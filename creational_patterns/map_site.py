@@ -13,13 +13,13 @@ class Direction(Enum):
 
 class MapSite(ABC):
     """
-    Interface to represent maze components
+    Interface to represent creational_patterns components
     """
 
     @abstractmethod
     def enter(self):
         """
-        Shows what happens when entering maze component
+        Shows what happens when entering creational_patterns component
         """
         pass
 

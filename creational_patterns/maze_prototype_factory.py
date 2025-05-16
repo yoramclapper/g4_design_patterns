@@ -6,7 +6,7 @@ from maze_game import Maze
 
 class MazePrototypeFactory(AbstractMazeFactory):
     """
-    A factory that creates maze components based on prototypes.
+    A factory that creates creational_patterns components based on prototypes.
     """
 
     def __init__(self, maze: Maze, wall: Wall, room: Room, door: Door):
@@ -35,7 +35,7 @@ class MazePrototypeFactory(AbstractMazeFactory):
 
 class MazeGame:
     """
-    Creates maze using prototype factory
+    Creates creational_patterns using prototype factory
     """
 
     def __init__(self, factory: MazePrototypeFactory):

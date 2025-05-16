@@ -5,13 +5,13 @@ from map_site import Direction, Room, Wall, Door
 
 class MazeBuilder(ABC):
     """
-    Abstract builder for maze components.
+    Abstract builder for creational_patterns components.
     """
 
     @abstractmethod
     def build_maze(self):
         """
-        Builds a maze.
+        Builds a creational_patterns.
         """
         pass
 
@@ -32,7 +32,7 @@ class MazeBuilder(ABC):
     @abstractmethod
     def get_maze(self):
         """
-        Returns the constructed maze.
+        Returns the constructed creational_patterns.
         """
         pass
 
@@ -70,7 +70,7 @@ class StandardMazeBuilder(MazeBuilder):
             elif item.room_number == n2:
                 rooms[1] = item
         if rooms[0] is None or rooms[1] is None:
-            print("Rooms not found in maze")
+            print("Rooms not found in creational_patterns")
         else:
             room1 = rooms[0]
             room2 = rooms[1]
@@ -81,7 +81,7 @@ class StandardMazeBuilder(MazeBuilder):
 
 class MazeGame:
     """
-    Creates maze using the builder pattern.
+    Creates creational_patterns using the builder pattern.
     """
 
     def __init__(self, builder: MazeBuilder):
@@ -89,7 +89,7 @@ class MazeGame:
 
     def create_maze(self) -> Maze:
         """
-        Constructs the maze using the builder.
+        Constructs the creational_patterns using the builder.
         """
 
         self._builder.build_maze()
